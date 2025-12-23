@@ -50,7 +50,11 @@ app.get("/extract-gpx", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Serveur GPX actif");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Serveur GPX actif sur le port", PORT);
 });
+
+
 
