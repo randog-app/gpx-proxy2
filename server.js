@@ -1,6 +1,6 @@
 import express from "express";
 import fetch from "node-fetch";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 
 const app = express();
 
@@ -53,3 +53,4 @@ app.get("/extract-gpx", async (req, res) => {
 app.listen(3000, () => {
   console.log("Serveur GPX actif");
 });
+
