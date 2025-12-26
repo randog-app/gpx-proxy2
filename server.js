@@ -11,15 +11,16 @@ app.get("/extract-gpx", async (req, res) => {
       return res.status(400).send("URL manquante");
     }
 
-    const html = await (await fetch(pageUrl)).text();
+    const html = await (await fetch(pageUrl,{headers:{'User-Agent':'Mozilla/5.0'}})).text();
     const $ = cheerio.load(html);
 
+    /*
     const nextDataRaw = $("#__NEXT_DATA__").html();
     if (!nextDataRaw) {
       return res.status(404).send("Données Visorando introuvables");
     }
-
-    const data = JSON.parse(nextDataRaw);
+*/
+    const data = JSON.parse($);
     const pageProps = data?.props?.pageProps;
 
     const randonneeId =
@@ -48,4 +49,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Serveur GPX actif sur le port", PORT);
 });
+
 
