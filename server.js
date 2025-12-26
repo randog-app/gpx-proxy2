@@ -27,12 +27,12 @@ app.get("/extract-gpx", async (req, res) => {
       pageProps?.randonnee?.id ||
       pageProps?.hike?.id ||
       pageProps?.hikeId;
-
+print("${randonneeId}");
     if (!randonneeId) {
       return res.status(404).send("ID de randonnée introuvable");
     }
 
-    const gpxUrl = `https://www.visorando.com/telechargement/randonnee/gpx/${randonneeId}`;
+    const gpxUrl = `https://www.visorando.com/visorando-${randonneeId}`;
     const gpx = await (await fetch(gpxUrl)).text();
 
     res.set("Content-Type", "application/gpx+xml");
@@ -48,3 +48,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Serveur GPX actif sur le port", PORT);
 });
+
